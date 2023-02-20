@@ -4,8 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Controllers/login_controller.dart';
+import 'package:scanner_linkup_app/NavBar%20Screens/mian_navbar_screen.dart';
 import 'package:scanner_linkup_app/Screens/forget_screen.dart';
-import 'package:scanner_linkup_app/Screens/roughscreen.dart';
+import 'package:scanner_linkup_app/Screens/signup_screen.dart';
 
 class EmailLoginScreen extends StatelessWidget {
   const EmailLoginScreen({super.key});
@@ -170,7 +171,7 @@ class EmailLoginScreen extends StatelessWidget {
                                                     password:
                                                         c.passController.text);
                                                 if (status) {
-                                                  Get.to(const RoughScreen());
+                                                  Get.to(const NavigationScreen());
                                                 } else {
                                                   Get.defaultDialog(
                                                     title: "Error",
@@ -203,11 +204,11 @@ class EmailLoginScreen extends StatelessWidget {
                                         ),
                                         TextButton(
                                           onPressed: () {
-                                            // Navigator.push(context,
-                                            //     MaterialPageRoute(builder: (_) {
-                                            //   return
-                                            //   const LinkupSignUpScreen();
-                                            // }));
+                                            Navigator.push(context,
+                                                MaterialPageRoute(builder: (_) {
+                                              return
+                                              const LinkupSignUpScreen();
+                                            }));
                                           },
                                           child: const Text(
                                             'Sign Up',

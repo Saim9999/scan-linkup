@@ -47,6 +47,8 @@ dependencies:
   fluttertoast: ^8.1.2
   image_picker: ^0.8.5+3
   path: ^1.8.1
+  dropdown_search: ^5.0.5
+  csc_picker: ^0.2.7
 
 dev_dependencies:
   flutter_test:
