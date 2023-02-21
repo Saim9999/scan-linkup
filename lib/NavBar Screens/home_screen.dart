@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             return Column(
                               children: [
                                 ListTile(
-                                  tileColor: Colors.grey.withOpacity(0.1),
+                                  tileColor: Colors.grey.withOpacity(0.2),
                                   leading: SizedBox(
                                     height: 90,
                                     width: 90,
