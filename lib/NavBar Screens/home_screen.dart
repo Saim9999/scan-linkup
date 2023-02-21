@@ -15,8 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  CollectionReference eventRef = FirebaseFirestore.instance.collection("events");
-  String? countryValue="Select a Specific Country";
+  CollectionReference eventRef =
+      FirebaseFirestore.instance.collection("events");
+  String? countryValue = "Select a Specific Country";
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        drawer: const Drawer(
-          child: DrawerScreen()
-          ),
+        drawer: const Drawer(child: DrawerScreen()),
         body: Column(
           children: [
             Column(
@@ -84,22 +83,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   dropdownDecoration: BoxDecoration(
                       borderRadius: BorderRadius.zero,
                       color: Colors.white,
-                      border: Border.all(color: Colors.white, width: 1,)),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 1,
+                      )),
                   disabledDropdownDecoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.grey.shade300,
                       border:
-                      Border.all(color: Colors.grey.shade300, width: 1)),
+                          Border.all(color: Colors.grey.shade300, width: 1)),
                   selectedItemStyle: const TextStyle(
                     color: Colors.black,
-                    fontSize: 12,),
+                    fontSize: 12,
+                  ),
                   dropdownHeadingStyle: const TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.bold),
                   dropdownItemStyle: const TextStyle(
                     color: Colors.black,
-                    fontSize: 12,),
+                    fontSize: 12,
+                  ),
                   dropdownDialogRadius: 10.0,
                   searchBarRadius: 10.0,
                   countrySearchPlaceholder: "Country",
@@ -113,9 +117,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Selected Country",style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),),
-                    Text("$countryValue",style: TextStyle(fontSize: 16.sp),),
-
+                    Text(
+                      "Selected Country",
+                      style: TextStyle(
+                          fontSize: 14.sp, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "$countryValue",
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                   ],
                 ),
               ],
@@ -127,7 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10.h,
             ),
             FutureBuilder(
-                future: eventRef.where('country', isEqualTo: countryValue).get(),
+                future:
+                    eventRef.where('country', isEqualTo: countryValue).get(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Expanded(
@@ -140,6 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             return Column(
                               children: [
                                 ListTile(
+                                  tileColor: Colors.grey.withOpacity(0.1),
                                   leading: SizedBox(
                                     height: 90,
                                     width: 90,
@@ -152,32 +164,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                     obj.title,
                                     style: const TextStyle(
                                       color: Colors.black,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),
                                   ),
                                   subtitle: Text(
                                     obj.description,
                                     style: const TextStyle(
-                                      color:Color.fromARGB(255, 110, 110, 110),
+                                      color: Color.fromARGB(255, 110, 110, 110),
                                       fontSize: 10,
-                                    ),textAlign: TextAlign.justify,
+                                    ),
+                                    textAlign: TextAlign.justify,
                                   ),
                                 ),
-                                const Divider(
-                                  color: Color.fromARGB(255, 110, 110, 110),
-                                  thickness: 0,
-                                  indent: 15,
-                                  endIndent: 15,
-                                )
+                                SizedBox(
+                                  height: 15.h,
+                                ),
                               ],
                             );
                           }),
                     );
-                  } else
-                  {
+                  } else {
                     return const Center(child: CircularProgressIndicator());
                   }
                 }),
+            SizedBox(
+              height: 45.h,
+            ),
           ],
         ),
       ),
