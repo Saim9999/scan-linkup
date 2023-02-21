@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Controllers/login_controller.dart';
-import 'package:scanner_linkup_app/NavBar%20Screens/mian_navbar_screen.dart';
-import 'package:scanner_linkup_app/Screens/forget_screen.dart';
 import 'package:scanner_linkup_app/Screens/signup_screen.dart';
 
-class EmailLoginScreen extends StatelessWidget {
+import '../NavBar Screens/mian_navbar_screen.dart';
+import 'forget_pass_screen.dart';
+
+class EmailLoginScreen extends StatefulWidget {
   const EmailLoginScreen({super.key});
+
+  @override
+  State<EmailLoginScreen> createState() => _EmailLoginScreenState();
+}
+
+class _EmailLoginScreenState extends State<EmailLoginScreen> {
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -137,8 +144,9 @@ class EmailLoginScreen extends StatelessWidget {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              Get.to(
-                                                  const ForgetPasswordScreen());
+                                             Navigator.push(context, MaterialPageRoute(builder: (_){
+                                              return const ForgetPasswordScreen();
+                                             }));
                                             },
                                             child: const Text(
                                               'Forgot your password',
@@ -171,7 +179,7 @@ class EmailLoginScreen extends StatelessWidget {
                                                     password:
                                                         c.passController.text);
                                                 if (status) {
-                                                  Get.to(const NavigationScreen());
+                                                  Get.offAll(const NavigationScreen());
                                                 } else {
                                                   Get.defaultDialog(
                                                     title: "Error",

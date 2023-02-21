@@ -1,11 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:scanner_linkup_app/Screens/scanner_login_screen.dart';
 
-class DrawerScreen extends StatelessWidget {
+class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
+
+  @override
+  State<DrawerScreen> createState() => _DrawerScreenState();
+}
+
+class _DrawerScreenState extends State<DrawerScreen> {
+  signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(EmailLoginScreen());
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +176,9 @@ class DrawerScreen extends StatelessWidget {
                 horizontalTitleGap: 0,
               ),
               ListTile(
+                onTap: () {
+                  signOut();
+                },
                 visualDensity: VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),

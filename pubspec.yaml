@@ -44,8 +44,8 @@ dependencies:
   json_annotation: ^4.5.0
   cloud_firestore: ^4.4.0
   firebase_storage: ^11.0.10
-  fluttertoast: ^8.1.2
   image_picker: ^0.8.5+3
+  fluttertoast: ^8.2.0
   path: ^1.8.1
   dropdown_search: ^5.0.5
   csc_picker: ^0.2.7
