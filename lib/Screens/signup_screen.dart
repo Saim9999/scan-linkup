@@ -105,7 +105,7 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
                   ),
                   Center(
                       child: Image.asset(
-                        'assets/images/Vector Smart Object (1).png',
+                        'assets/images/Vector Smart Object (5).png',
                         height: 80.h,
                       )),
                   SizedBox(

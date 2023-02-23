@@ -43,25 +43,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 35),
-                      child: Text(
-                        'Search',
-                        style: TextStyle(fontSize: 16.sp),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 35),
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.black.withOpacity(0.3),
-                      ),
-                    )
-                  ],
+                SizedBox(
+                  width: 30.w,
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20,right: 20),
+                  child: CSCPicker(
+                    showCities: false,
+                    showStates: false,
+                    flagState: CountryFlag.DISABLE,
+                    dropdownDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.zero,
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 1,
+                        )),
+                    disabledDropdownDecoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        color: Colors.grey.shade300,
+                        border:
+                            Border.all(color: Colors.grey.shade300, width: 1)),
+                    selectedItemStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                    ),
+                    dropdownHeadingStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold),
+                    dropdownItemStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                    ),
+                    dropdownDialogRadius: 10.0,
+                    searchBarRadius: 10.0,
+                    countrySearchPlaceholder: "Country",
+                    countryDropdownLabel: "Search",
+                    onCountryChanged: (value) {
+                      setState(() {
+                        countryValue = value;
+                      });
+                    },
+                  ),
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 35),
+                //       child: Text(
+                //         'Search',
+                //         style: TextStyle(fontSize: 16.sp),
+                //       ),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(right: 35),
+                //       child: Icon(
+                //         Icons.search,
+                //         color: Colors.black.withOpacity(0.3),
+                //       ),
+                //     )
+                //   ],
+                // ),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -75,44 +119,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(
                   height: 10.h,
-                ),
-                CSCPicker(
-                  showCities: false,
-                  showStates: false,
-                  flagState: CountryFlag.DISABLE,
-                  dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.zero,
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 1,
-                      )),
-                  disabledDropdownDecoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: Colors.grey.shade300,
-                      border:
-                          Border.all(color: Colors.grey.shade300, width: 1)),
-                  selectedItemStyle: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 12,
-                  ),
-                  dropdownHeadingStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
-                  dropdownItemStyle: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 12,
-                  ),
-                  dropdownDialogRadius: 10.0,
-                  searchBarRadius: 10.0,
-                  countrySearchPlaceholder: "Country",
-                  countryDropdownLabel: "Country",
-                  onCountryChanged: (value) {
-                    setState(() {
-                      countryValue = value;
-                    });
-                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
