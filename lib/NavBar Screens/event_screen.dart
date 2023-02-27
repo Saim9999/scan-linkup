@@ -17,13 +17,11 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
-
   CollectionReference eventRef =
       FirebaseFirestore.instance.collection("events");
   String? countryValue = "Select a Specific Country";
   User? user = FirebaseAuth.instance.currentUser;
   String? id;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +51,6 @@ class _EventScreenState extends State<EventScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 35),
-                //   child: Text(
-                //     'Search',
-                //     style: TextStyle(fontSize: 16.sp),
-                //   ),
-                // ),
                 Padding(
                   padding: const EdgeInsets.only(right: 20, left: 20),
                   child: CSCPicker(
@@ -116,7 +107,6 @@ class _EventScreenState extends State<EventScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

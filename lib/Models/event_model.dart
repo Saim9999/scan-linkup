@@ -33,6 +33,7 @@ class EventModel
   late final String liveDead;
   late final String image_object;
   late final String organizer_imgae_object;
+  late final String eventId;
 
   EventModel({
      required this.title,
@@ -66,6 +67,7 @@ class EventModel
      required this. liveDead,
      required this. image_object,
      required this. organizer_imgae_object,
+     required this.eventId,
 });
   EventModel.fromDocumentSnapshot({required DocumentSnapshot doc})
   {
@@ -101,5 +103,6 @@ class EventModel
     liveDead=data["liveDead"]??"";
     image_object=data["image_object"]??"";
     organizer_imgae_object=data["organizer_imgae_object"]??"";
+    eventId = data["eventId"]??"";
   }
 }
