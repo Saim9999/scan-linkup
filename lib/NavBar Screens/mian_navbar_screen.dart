@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/event_screen.dart';
-import 'package:scanner_linkup_app/NavBar%20Screens/home_screen.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/qr_scan_screen.dart';
+import 'package:scanner_linkup_app/NavBar%20Screens/rough_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -17,7 +17,9 @@ class NavigationScreenState extends State<NavigationScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
   final List<Widget> mainScreens = [
-    const HomeScreen(),
+
+    const Text('Home Page',
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const ScanScreen(),
     const Text('Search Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),

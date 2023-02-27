@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Controllers/login_controller.dart';
 import 'package:scanner_linkup_app/Screens/signup_screen.dart';
@@ -15,8 +16,16 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
-
-
+  final spinkit = SpinKitFadingCircle(
+    size: 50,
+    itemBuilder: (BuildContext context, int index) {
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          color: index.isEven ? Colors.white : Colors.blueAccent,
+        ),
+      );
+    },
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -144,9 +153,11 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                             Navigator.push(context, MaterialPageRoute(builder: (_){
-                                              return const ForgetPasswordScreen();
-                                             }));
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) {
+                                                return const ForgetPasswordScreen();
+                                              }));
                                             },
                                             child: const Text(
                                               'Forgot your password',
@@ -172,6 +183,16 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                           onPressed: () async {
                                             if (c.globalKey.currentState!
                                                 .validate()) {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return Center(
+                                                    child: spinkit,
+                                                  );
+                                                },
+                                                barrierDismissible: false,
+                                              );
                                               {
                                                 bool status = await c.loginUser(
                                                     email:
@@ -179,7 +200,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                     password:
                                                         c.passController.text);
                                                 if (status) {
-                                                  Get.offAll(const NavigationScreen());
+                                                  Get.offAll(
+                                                      const NavigationScreen());
                                                 } else {
                                                   Get.defaultDialog(
                                                     title: "Error",
@@ -214,8 +236,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                           onPressed: () {
                                             Navigator.push(context,
                                                 MaterialPageRoute(builder: (_) {
-                                              return
-                                              const LinkupSignUpScreen();
+                                              return const LinkupSignUpScreen();
                                             }));
                                           },
                                           child: const Text(

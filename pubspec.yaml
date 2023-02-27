@@ -49,6 +49,8 @@ dependencies:
   path: ^1.8.1
   dropdown_search: ^5.0.5
   csc_picker: ^0.2.7
+  pie_chart: ^5.3.2
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:
