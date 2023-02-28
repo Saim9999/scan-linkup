@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Screens/scanner_login_screen.dart';
 
@@ -44,6 +45,8 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
     final credential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
     User? currentUser = credential.user;
+    
+
     if (currentUser != null) {
       debugPrint(currentUser.uid);
       Map<String, dynamic> profileData = {
@@ -418,6 +421,14 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
                             radiobutton.value,
                             roleController.text,
                           );
+                          Fluttertoast.showToast(
+                              msg: "Sign up Successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                           Get.offAll(const EmailLoginScreen());
                         }
                       },
