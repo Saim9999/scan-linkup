@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 class QRModel
 {
@@ -15,7 +16,7 @@ class QRModel
   late final String no_of_tickets_available_vip;
   late final String price_economy;
   late final String price_vip;
-  late final int qrcode;
+  late final String qrcode;
   late final String title;
   late final int updated_at;
 
@@ -55,8 +56,9 @@ class QRModel
     no_of_tickets_available_vip=data["no_of_tickets_available_vip"]??"";
     price_economy=data["price_economy"]??"";
     price_vip=data["price_vip"]??"";
-    qrcode=data["qrcode"]??"";
+    qrcode = data["qrcode"]??"";
     title=data["title"]??"";
     updated_at=data["updated_at"]??"";
   }
 }
+

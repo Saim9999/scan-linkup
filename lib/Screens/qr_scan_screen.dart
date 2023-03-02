@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
+import 'package:scanner_linkup_app/Screens/scan_event_detail.dart';
 
 class QRScreen extends StatefulWidget {
   const QRScreen({super.key});
@@ -19,6 +22,7 @@ class _QRScreenState extends State<QRScreen> {
     var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
+       
         body: Container(
           height: double.infinity,
           width: double.infinity,
@@ -57,9 +61,25 @@ class _QRScreenState extends State<QRScreen> {
                   child: Text('Scan QR'),
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 5.0,
                 ),
-                Text(getResult),
+
+                 Text(getResult),
+
+                 SizedBox(
+                  height: 5.0,
+                ),
+                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 56, 170, 215),
+                  ),
+                  onPressed: () {
+                    print("thids is scan dddddddddddddd${getResult}");
+                   Get.to(ScanEventDetail(qr: getResult,));
+                  },
+                  child: Text('See Detail'),
+                ),
+               
               ],
             ),
           ),
