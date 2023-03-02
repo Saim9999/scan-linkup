@@ -2,6 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:scanner_linkup_app/Screens/splash_screen.dart';
+import 'Screens/qr_code_generetor.dart';
+import 'Screens/qr_scan_screen.dart';
+import 'Screens/scan_event_detail.dart';
 
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WelcomeSplash(),
+      home: ScanEventDetail(),
     );
+    
   }
 }

@@ -171,7 +171,6 @@ class _EventScreenState extends State<EventScreen> {
                                     textAlign: TextAlign.justify,
                                   ),
                                   onTap: () {
-                                    print("object");
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -181,24 +180,6 @@ class _EventScreenState extends State<EventScreen> {
                                                 subtitle: obj.description,
                                               )),
                                     );
-                                    // Get.to(() => EventScreen(
-                                    //       title: obj.title,
-                                    //       image: obj.image_object,
-                                    //       subtitle: obj.description,
-                                    //     ));
-
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (_) {
-                                    //       print("object1");
-                                    //       return EventScreen(
-                                    //         title: obj.title,
-                                    //         image: obj.image_object,
-                                    //       );
-                                    //     },
-                                    //   ),
-                                    // );
                                   },
                                 ),
                                 SizedBox(

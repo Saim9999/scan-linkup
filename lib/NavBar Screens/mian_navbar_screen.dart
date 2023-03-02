@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/event_screen.dart';
-import 'package:scanner_linkup_app/NavBar%20Screens/qr_scan_screen.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/rough_screen.dart';
+
+import '../Screens/qr_scan_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -20,7 +21,8 @@ class NavigationScreenState extends State<NavigationScreen>
 
     const Text('Home Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const ScanScreen(),
+    // const ScanPassScreen(),
+    QRScreen(),
     const Text('Search Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const Text('Cashout Page',

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Screens/scanner_login_screen.dart';
+
+import '../Models/ui_helper.dart';
 
 class LinkupSignUpScreen extends StatefulWidget {
   const LinkupSignUpScreen({super.key});
@@ -42,11 +46,19 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
     String radio,
     String role,
   ) async {
-    final credential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
-    User? currentUser = credential.user;
-    
-
+    UserCredential? credential;
+    try {
+      credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        debugPrint('The account already exists for that email.');
+        Navigator.of(context).pop();
+        UIHelper.showAlertDialog(context, "An error occured!",
+            "The account already exists for that email.");
+      }
+    }
+    User? currentUser = credential!.user;
     if (currentUser != null) {
       debugPrint(currentUser.uid);
       Map<String, dynamic> profileData = {
@@ -59,18 +71,11 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
         "website": website,
         "radio": radiobutton.value,
         "role": role,
+        "created _at": DateTime.now(),
       };
       signUser.add(profileData);
     }
   }
-  //   on FirebaseAuthException catch (e) {
-  //     debugPrint('The account already exists for that email.');
-  //     Future.delayed(Duration.zero)
-  //         .then((value) => Navigator.of(context).pop());
-  //     UIHelper.showAlertDialog(
-  //         context, "An error occured!", e.message.toString());
-  //   }
-  // }
 
   String? val(String? value) {
     if (value == null || value.isEmpty) {

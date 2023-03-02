@@ -34,27 +34,8 @@ class _RoughScreenState extends State<RoughScreen> {
       FirebaseFirestore.instance.collection('ticketSales');
   CollectionReference ref3 = FirebaseFirestore.instance.collection('events');
 
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  String? eventId;
-
-// Retrieve the event ID from Firebase and store it in the variable
-  void getEventIdFromFirebase() async {
-    try {
-      DocumentSnapshot documentSnapshot =
-          await firestore.collection('events').doc('oavEadU5icC1pdu1vKAb').get();
-      if (documentSnapshot.exists) {
-        eventId = (documentSnapshot.data() as Map<String, dynamic>)['eventId'];
-      }
-    } catch (e) {
-      print('Error retrieving event ID from Firebase: $e');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    print("12121212121212121212121 $eventId");
-
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
@@ -77,131 +58,124 @@ class _RoughScreenState extends State<RoughScreen> {
             drawer: const Drawer(
               child: DrawerScreen(),
             ),
-            body: FutureBuilder(
-                future: ref3.get(),
-                builder: (
-                  context,
-                  snapshot,
-                ) {
-                  // EventModel detail = EventModel.fromDocumentSnapshot(doc: snapshot.data!.docs.);
-                  return ListView(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 200.h,
-                        child: Image.network(
-                          widget.image.toString(),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          widget.title.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.sp,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          widget.subtitle.toString(),
-                          style: TextStyle(fontSize: 12.sp, color: Colors.grey),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          FutureBuilder(
-                              future: ref.get(),
-                              builder: (context, snapshot) {
-                                final count1 = snapshot.data?.size ?? 0;
-                                return PieChart(
-                                  centerText: count1.toString(),
-                                  centerTextStyle: TextStyle(
-                                    fontSize: 26.sp,
-                                    color: Color.fromARGB(255, 56, 171, 216),
-                                  ),
-                                  ringStrokeWidth: 15,
-                                  chartLegendSpacing: 20,
-                                  dataMap: {
-                                    'Total Sales':
-                                        double.parse(count1.toString())
-                                  },
-                                  chartType: ChartType.ring,
-                                  chartRadius: 100,
-                                  baseChartColor: Colors.grey.withOpacity(0.3),
-                                  colorList: colorList,
-                                  chartValuesOptions: const ChartValuesOptions(
-                                      decimalPlaces: 0,
-                                      showChartValues: false,
-                                      showChartValueBackground: false,
-                                      // chartValueBackgroundColor: Colors.amber,
-                                      showChartValuesInPercentage: false,
-                                      chartValueStyle: TextStyle(
-                                          color: Colors.black, fontSize: 20)),
-                                  legendOptions: LegendOptions(
-                                    legendPosition: LegendPosition.bottom,
-                                    showLegends: true,
-                                  ),
-                                  totalValue: 100,
-                                );
-                              }),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 30),
-                            child: Image.asset(
-                              'assets/images/Vector (3).png',
-                              height: 120.h,
+            body: ListView(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 200.h,
+                  child: Image.network(
+                    widget.image.toString(),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    widget.title.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Text(
+                    widget.subtitle.toString(),textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 12.sp, color: Colors.grey,),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    FutureBuilder(
+                        future: ref.get(),
+                        builder: (context, snapshot) {
+                          final count1 = snapshot.data?.size ?? 0;
+                          return PieChart(
+                            centerText: count1.toString(),
+                            centerTextStyle: TextStyle(
+                              fontSize: 26.sp,
+                              color: Color.fromARGB(255, 56, 171, 216),
                             ),
-                          ),
-                          FutureBuilder(
-                              future: ref2.get(),
-                              builder: (context, snapshot) {
-                                final count = snapshot.data?.size ?? 0;
-                                return PieChart(
-                                  centerText: count.toString(),
-                                  centerTextStyle: TextStyle(
-                                    fontSize: 26.sp,
-                                    color: Color.fromARGB(255, 56, 171, 216),
-                                  ),
-                                  ringStrokeWidth: 15,
-                                  chartLegendSpacing: 20,
-                                  dataMap: {
-                                    'Attending': double.parse(count.toString())
-                                  },
-                                  chartType: ChartType.ring,
-                                  chartRadius: 100,
-                                  baseChartColor: Colors.grey.withOpacity(0.3),
-                                  colorList: colorList,
-                                  chartValuesOptions: const ChartValuesOptions(
-                                      decimalPlaces: 0,
-                                      showChartValueBackground: false,
-                                      showChartValues: false,
-                                      showChartValuesInPercentage: false,
-                                      chartValueStyle: TextStyle(
-                                          color: Colors.black, fontSize: 20)),
-                                  legendOptions: LegendOptions(
-                                    legendPosition: LegendPosition.bottom,
-                                    showLegends: true,
-                                  ),
-                                  totalValue: 100,
-                                );
-                              }),
-                        ],
+                            ringStrokeWidth: 15,
+                            chartLegendSpacing: 20,
+                            dataMap: {
+                              'Total Sales':
+                                  double.parse(count1.toString())
+                            },
+                            chartType: ChartType.ring,
+                            chartRadius: 100,
+                            baseChartColor: Colors.grey.withOpacity(0.3),
+                            colorList: colorList,
+                            chartValuesOptions: const ChartValuesOptions(
+                                decimalPlaces: 0,
+                                showChartValues: false,
+                                showChartValueBackground: false,
+                                // chartValueBackgroundColor: Colors.amber,
+                                showChartValuesInPercentage: false,
+                                chartValueStyle: TextStyle(
+                                    color: Colors.black, fontSize: 20)),
+                            legendOptions: LegendOptions(
+                              legendPosition: LegendPosition.bottom,
+                              showLegends: true,
+                            ),
+                            totalValue: 100,
+                          );
+                        }),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 30),
+                      child: Image
+                      .asset(
+                        'assets/images/Vector (3).png',
+                        height: 120.h,
                       ),
-                    ],
-                  );
-                })));
+                    ),
+                    FutureBuilder(
+                        future: ref2.get(),
+                        builder: (context, snapshot) {
+                          final count = snapshot.data?.size ?? 0;
+                          return PieChart(
+                            centerText: count.toString(),
+                            centerTextStyle: TextStyle(
+                              fontSize: 26.sp,
+                              color: Color.fromARGB(255, 56, 171, 216),
+                            ),
+                            ringStrokeWidth: 15,
+                            chartLegendSpacing: 20,
+                            dataMap: {
+                              'Attending': double.parse(count.toString())
+                            },
+                            chartType: ChartType.ring,
+                            chartRadius: 100,
+                            baseChartColor: Colors.grey.withOpacity(0.3),
+                            colorList: colorList,
+                            chartValuesOptions: const ChartValuesOptions(
+                                decimalPlaces: 0,
+                                showChartValueBackground: false,
+                                showChartValues: false,
+                                showChartValuesInPercentage: false,
+                                chartValueStyle: TextStyle(
+                                    color: Colors.black, fontSize: 20)),
+                            legendOptions: LegendOptions(
+                              legendPosition: LegendPosition.bottom,
+                              showLegends: true,
+                            ),
+                            totalValue: 100,
+                          );
+                        }),
+                  ],
+                ),
+              ],
+            )));
   }
 }
