@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Controllers/login_controller.dart';
 import 'package:scanner_linkup_app/Screens/qr_scan_screen.dart';
 import 'package:scanner_linkup_app/Screens/signup_screen.dart';
-
-import '../NavBar Screens/mian_navbar_screen.dart';
 import 'forget_pass_screen.dart';
 
 class EmailLoginScreen extends StatefulWidget {
@@ -17,7 +15,16 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
-
+  final spinkit = SpinKitFadingCircle(
+    size: 50,
+    itemBuilder: (BuildContext context, int index) {
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          color: index.isEven ? Colors.white : Colors.blueAccent,
+        ),
+      );
+    },
+  );
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -25,14 +32,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       builder: (context, child) => Scaffold(
         body: SafeArea(
             child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: const BoxDecoration(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
               image: DecorationImage(
-                  image:
-                      AssetImage('assets/images/Link Up Scanner  Login 1.png'),
-                  fit: BoxFit.fill)),
-          child: GetBuilder<LoginScreenController>(
+                  image: AssetImage('assets/images/Link Up Scanner  Login 1.png'), fit: BoxFit.fill)),
+            child: GetBuilder<LoginScreenController>(
               init: LoginScreenController(),
               builder: (logic) {
                 return GetBuilder<LoginScreenController>(
@@ -175,22 +180,32 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                             if (c.globalKey.currentState!
                                                 .validate()) {
                                               {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return  Center(
+                                                      child: spinkit,
+                                                    );
+                                                  },
+                                                  barrierDismissible: false,
+                                                );
                                                 bool status = await c.loginUser(
                                                     email:
                                                         c.emailController.text,
                                                     password:
                                                         c.passController.text);
+                                                FocusScope.of(context).unfocus();
                                                 if (status) {
-                                                  Get.offAll(
-                                                      const QRScreen());
+                                                  Get.offAll(const QRScreen());
                                                 } else {
+                                                  Navigator.of(context, rootNavigator: true).pop();
                                                   Get.defaultDialog(
                                                     title: "Error",
                                                     middleText:
-                                                        "Wrong Email or Password Provided.",
+                                                    "Wrong Email or Password Provided.",
                                                     backgroundColor:
-                                                        const Color.fromARGB(
-                                                            255, 56, 170, 215),
+                                                    const Color.fromARGB(
+                                                        255, 56, 170, 215),
                                                   );
                                                 }
                                               }

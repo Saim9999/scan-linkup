@@ -74,7 +74,6 @@ class _QRScreenState extends State<QRScreen> {
                   },
                   child: const Text('See Detail'),
                 ),
-               
               ],
             ),
           ),
