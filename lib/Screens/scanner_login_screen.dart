@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Controllers/login_controller.dart';
-import 'package:scanner_linkup_app/Screens/qr_scan_screen.dart';
 import 'package:scanner_linkup_app/Screens/signup_screen.dart';
+import '../NavBar Screens/mian_navbar_screen.dart';
 import 'forget_pass_screen.dart';
 
 class EmailLoginScreen extends StatefulWidget {
@@ -36,7 +36,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             width: double.infinity,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/images/Link Up Scanner  Login 1.png'), fit: BoxFit.fill)),
+                  image: AssetImage('assets/images/Link Up Scanner  Login 1.png'), fit: BoxFit.fill),
+            ),
             child: GetBuilder<LoginScreenController>(
               init: LoginScreenController(),
               builder: (logic) {
@@ -196,7 +197,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                         c.passController.text);
                                                 FocusScope.of(context).unfocus();
                                                 if (status) {
-                                                  Get.offAll(const QRScreen());
+                                                  Get.offAll(const NavigationScreen());
                                                 } else {
                                                   Navigator.of(context, rootNavigator: true).pop();
                                                   Get.defaultDialog(

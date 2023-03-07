@@ -33,46 +33,46 @@ class EventModel
   late final String liveDead;
   late final String image_object;
   late final String organizer_imgae_object;
-  late final String eventId;
+  late final String id;
+  late final String event_id;
 
   EventModel({
-     required this.title,
-     required this. description,
-     required this. category,
-     required this. venue,
-     required this. startTime,
-     required this. startDate,
-     required this. endTime,
-     required this. endDate,
-     required this. earlyBirdEconomyPrice,
-     required this. earlyBirdEconomySeat,
-     required this. economyPrice,
-     required this. economicSeat,
-     required this. vip,
-     required this. vipSeat,
-     required this. earlyBirdVipPrice,
-     required this. earlyBirdVipSeat,
-     required this. earlyBirdPriceDateLimit,
-     required this. country,
-     required this. state,
-     required this. city,
-     required this. email,
-     required this. website,
-     required this. radio,
-     required this. type,
-     required this. phone,
-     required this. disclaimer,
-     required this. latitude,
-     required this. longitude,
-     required this. liveDead,
-     required this. image_object,
-     required this. organizer_imgae_object,
-     required this.eventId,
-});
+    required this.title,
+    required this. description,
+    required this. category,
+    required this. venue,
+    required this. startTime,
+    required this. startDate,
+    required this. endTime,
+    required this. endDate,
+    required this. earlyBirdEconomyPrice,
+    required this. earlyBirdEconomySeat,
+    required this. economyPrice,
+    required this. economicSeat,
+    required this. vip,
+    required this. vipSeat,
+    required this. earlyBirdVipPrice,
+    required this. earlyBirdVipSeat,
+    required this. earlyBirdPriceDateLimit,
+    required this. country,
+    required this. state,
+    required this. city,
+    required this. email,
+    required this. website,
+    required this. radio,
+    required this. type,
+    required this. phone,
+    required this. disclaimer,
+    required this. latitude,
+    required this. longitude,
+    required this. liveDead,
+    required this. image_object,
+    required this. organizer_imgae_object,
+  });
   EventModel.fromDocumentSnapshot({required DocumentSnapshot doc})
   {
     Map<String,dynamic> data=doc.data() as Map<String,dynamic>;
-    //id=doc.id;
+    id=doc.id;
     title=data["title"]??"";
     description=data["description"]??"";
     category=data["category"]??"";
@@ -103,6 +103,7 @@ class EventModel
     liveDead=data["liveDead"]??"";
     image_object=data["image_object"]??"";
     organizer_imgae_object=data["organizer_imgae_object"]??"";
-    eventId = data["eventId"]??"";
+    event_id=data["event_id"]??"";
+
   }
 }

@@ -17,17 +17,14 @@ class DrawerScreen extends StatefulWidget {
 class _DrawerScreenState extends State<DrawerScreen> {
   signOut() async {
     await FirebaseAuth.instance.signOut();
-    Get.offAll(EmailLoginScreen());
+    Get.offAll(const EmailLoginScreen());
   }
-
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
-        backgroundColor: Color.fromARGB(253, 0, 174, 227),
+        backgroundColor: const Color.fromARGB(253, 0, 174, 227),
         body: SafeArea(
           child: ListView(
             children: [
@@ -37,11 +34,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Icon(Icons.menu,color: Colors.white,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 200),
+                    padding: const EdgeInsets.only(left: 50.0),
                     child: Image.asset(
                       'assets/images/imgpsh_fullsize_anim.png',
                       height: 40,
@@ -53,7 +46,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 height: 40.h,
               ),
               ListTile(
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -62,16 +55,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     color: Colors.white,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Profile',
                   style: TextStyle(color: Colors.white),
                 ),
                 horizontalTitleGap: 0,
               ),
-              ListTile(
+              const ListTile(
                 visualDensity: VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
-                    padding: const EdgeInsets.only(left: 40),
+                    padding: EdgeInsets.only(left: 40),
                     child: Icon(
                       Icons.calendar_month_outlined,
                       color: Colors.white,
@@ -83,7 +76,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 horizontalTitleGap: 0,
               ),
               ListTile(
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -92,14 +85,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     color: Colors.white,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Events',
                   style: TextStyle(color: Colors.white),
                 ),
                 horizontalTitleGap: 0,
               ),
               ListTile(
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -108,14 +101,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     color: Colors.white,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Scan Ticket',
                   style: TextStyle(color: Colors.white),
                 ),
                 horizontalTitleGap: 0,
               ),
               ListTile(
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -124,14 +117,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     height: 15.h,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Settings',
                   style: TextStyle(color: Colors.white),
                 ),
                 horizontalTitleGap: 0,
               ),
               ListTile(
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -139,14 +132,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     height: 15.h,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Notification',
                   style: TextStyle(color: Colors.white),
                 ),
                 horizontalTitleGap: 0,
               ),
               ListTile(
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -155,16 +148,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     height: 15.h,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Contact App Support',
                   style: TextStyle(color: Colors.white),
                 ),
                 horizontalTitleGap: 0,
               ),
-              ListTile(
+              const ListTile(
                 visualDensity: VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
-                    padding: const EdgeInsets.only(left: 40),
+                    padding: EdgeInsets.only(left: 40),
                     child: Icon(
                       Icons.search,
                       color: Colors.white,
@@ -179,7 +172,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 onTap: () {
                   signOut();
                 },
-                visualDensity: VisualDensity(horizontal: 4, vertical: -4),
+                visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Image.asset(
@@ -188,7 +181,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     height: 15.h,
                   ),
                 ),
-                title: Text(
+                title: const Text(
                   'Log Out',
                   style: TextStyle(color: Colors.white),
                 ),

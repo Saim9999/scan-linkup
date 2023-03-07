@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/Screens/scanner_login_screen.dart';
@@ -24,10 +23,6 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
     );
   }
   Widget build(BuildContext context) {
-    // AuthController authController = Get.put(AuthController());
-
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
         body: SafeArea(

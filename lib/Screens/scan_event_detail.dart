@@ -2,11 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:scanner_linkup_app/Models/qr_model.dart';
-
-import '../NavBar Screens/event_screen.dart';
 
 class ScanEventDetail extends StatefulWidget {
   String? qr;

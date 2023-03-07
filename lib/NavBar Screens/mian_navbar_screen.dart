@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/event_screen.dart';
-import 'package:scanner_linkup_app/NavBar%20Screens/rough_screen.dart';
-
 import '../Screens/qr_scan_screen.dart';
+import 'home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -17,19 +14,16 @@ class NavigationScreen extends StatefulWidget {
 class NavigationScreenState extends State<NavigationScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
-  final List<Widget> mainScreens = [
 
-    const Text('Home Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    // const ScanPassScreen(),
-    QRScreen(),
-    const Text('Search Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const Text('Cashout Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+  final List<Widget>
+  mainScreens = [
+    // const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    HomeScreen(),
+    const QRScreen(),
+    const Text('Search Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const EventScreen(),
-    const Text('Profile Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    const Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
   ];
 
   @override
@@ -40,8 +34,6 @@ class NavigationScreenState extends State<NavigationScreen>
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
         body: SafeArea(
@@ -93,20 +85,11 @@ class NavigationScreenState extends State<NavigationScreen>
                     text: 'Profile',
                   )
                 ],
-                labelStyle:
-                    TextStyle(fontSize: 8.sp, fontWeight: FontWeight.bold),
+                labelStyle: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.bold),
                 labelColor: Colors.black,
                 unselectedLabelColor: const Color.fromARGB(255, 56, 171, 216),
                 isScrollable: false,
-                // indicatorSize: TabBarIndicatorSize.tab,
-                // indicatorPadding: EdgeInsets.all(5.0),
-                // indicatorColor: Color.fromARGB(255, 124, 97, 65),
                 controller: tabController,
-                // indicator: UnderlineTabIndicator(
-                //   insets: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 75.0),
-                //   borderSide: BorderSide(
-                //       color: Color.fromARGB(255, 124, 97, 65), width: 3),
-                // ),
               ),
             ),
           ),
