@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:scanner_linkup_app/NavBar%20Screens/event_screen.dart';
 import '../Screens/qr_scan_screen.dart';
 import 'all_events_screen.dart';
 import 'home_screen.dart';
@@ -23,7 +22,7 @@ class NavigationScreenState extends State<NavigationScreen>
     const SearchEvents(),
     const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const AllEvents(),
-    const Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    const Text('Attendee Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
   ];
 
   @override

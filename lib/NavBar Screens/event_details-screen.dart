@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pie_chart/pie_chart.dart';
+
+import 'attendee_screen.dart';
 
 
 class EventDetailScreen extends StatefulWidget {
@@ -139,9 +143,9 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                       builder: (context, snapshot) {
                         final count = snapshot.data?.size ?? 0;
                         return GestureDetector(
-                          // onTap: (){
-                          //   Get.to( AttendeesScreen(takeId: widget.takeId,));
-                          // },
+                          onTap: (){
+                            Get.to( AttendeesScreen(takeId: widget.takeId,));
+                          },
                           child: PieChart(
                             centerText: count.toString(),
                             centerTextStyle: TextStyle(
