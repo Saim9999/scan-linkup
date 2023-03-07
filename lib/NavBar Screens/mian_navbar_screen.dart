@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/event_screen.dart';
 import '../Screens/qr_scan_screen.dart';
+import 'all_events_screen.dart';
 import 'home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -17,12 +18,11 @@ class NavigationScreenState extends State<NavigationScreen>
 
   final List<Widget>
   mainScreens = [
-    // const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    HomeScreen(),
+    const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const QRScreen(),
-    const Text('Search Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    const SearchEvents(),
     const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const EventScreen(),
+    const AllEvents(),
     const Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
   ];
 

@@ -8,14 +8,14 @@ import '../Models/event_model.dart';
 import '../Screens/drawer_screen.dart';
 import 'event_details-screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SearchEvents extends StatefulWidget {
+  const SearchEvents({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SearchEvents> createState() => _SearchEventsState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SearchEventsState extends State<SearchEvents> {
   CollectionReference eventRef =
   FirebaseFirestore.instance.collection("events");
   String? countryValue = "Select a Specific Country";
