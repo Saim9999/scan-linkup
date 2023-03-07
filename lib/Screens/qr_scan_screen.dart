@@ -46,21 +46,7 @@ class _QRScreenState extends State<QRScreen> {
                 SizedBox(
                   height: 30.h,
                 ),
-                // ElevatedButton(
-                //   style: ElevatedButton.styleFrom(
-                //     backgroundColor: const Color.fromARGB(255, 56, 170, 215),
-                //   ),
-                //   onPressed: () {
-                //     scanQRCode();
-                //   },
-                //   child: const Text('Scan QR'),
-                // ),
-                // const SizedBox(
-                //   height: 5.0,
-                // ),
-
                  Text(getResult),
-
                  const SizedBox(
                   height: 5.0,
                 ),
