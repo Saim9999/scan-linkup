@@ -19,7 +19,7 @@ class LinkupSignUpScreen extends StatefulWidget {
 
 class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
   ///////////////////////////////////////////////
-  late int selectedRadioTile;
+  // late int selectedRadioTile;
   CollectionReference signUser =
       FirebaseFirestore.instance.collection('scansignUsers');
   /////////////////////////////////////////////
@@ -28,12 +28,14 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
   TextEditingController addressscanController = TextEditingController();
   TextEditingController telefonescanController = TextEditingController();
   TextEditingController emailscanController = TextEditingController();
-  TextEditingController websiteController = TextEditingController();
+  // TextEditingController websiteController = TextEditingController();
   TextEditingController roleController = TextEditingController();
   TextEditingController passController = TextEditingController();
   /////////////////////////////////////
-  Rx<String> radiobutton = ''.obs;
-  Location location = Location.Yes;
+  ///
+  // Rx<String> radiobutton = ''.obs;
+  // Location location = Location.Yes;
+  
   ///////////////////////////////////
   Future sendData(
     String firstName,
@@ -42,8 +44,8 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
     String telephone,
     String email,
     String password,
-    String website,
-    String radio,
+    // String website,
+    // String radio,
     String role,
   ) async {
     UserCredential? credential;
@@ -68,10 +70,10 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
         "address": address,
         "telephone": telephone,
         "email": email,
-        "website": website,
-        "radio": radiobutton.value,
+        // "website": website,
+        // "radio": radiobutton.value,
         "role": role,
-        "created _at": DateTime.now(),
+        "created_at": DateTime.now(),
       };
       signUser.add(profileData);
     }
@@ -422,8 +424,8 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
                             telefonescanController.text,
                             emailscanController.text,
                             passController.text,
-                            websiteController.text,
-                            radiobutton.value,
+                            // websiteController.text,
+                            // radiobutton.value,
                             roleController.text,
                           );
                           Fluttertoast.showToast(
@@ -474,4 +476,4 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
   }
 }
 
-enum Location { Yes, No }
+// enum Location { Yes, No }

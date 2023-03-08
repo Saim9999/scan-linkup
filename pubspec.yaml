@@ -53,7 +53,7 @@ dependencies:
   flutter_spinkit: ^5.1.0
   flutter_barcode_scanner: ^2.0.0
   qr_flutter: ^4.0.0
-  # ticketview: ^1.0.0
+  ticket_widget: ^0.0.1
 
 dev_dependencies:
   flutter_test:
