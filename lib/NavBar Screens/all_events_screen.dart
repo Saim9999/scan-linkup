@@ -8,13 +8,16 @@ import '../Screens/drawer_screen.dart';
 import 'event_details-screen.dart';
 
 class AllEvents extends StatefulWidget {
-  const AllEvents({super.key});
+  String? event_id;
+   AllEvents({super.key,  this.event_id});
 
   @override
   State<AllEvents> createState() => _AllEventsState();
 }
 
 class _AllEventsState extends State<AllEvents> {
+  ///////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   CollectionReference eventRef =
   FirebaseFirestore.instance.collection("events");
   String? countryValue = "Select a Specific Country";
@@ -51,9 +54,10 @@ class _AllEventsState extends State<AllEvents> {
               height: 10.h,
             ),
             FutureBuilder(
-                future: eventRef.where('id', isEqualTo: id).get(),
+                future: eventRef.where('event_id', isEqualTo: widget.event_id).get(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
+                    print(widget.event_id);
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError || snapshot.data == null) {
                     return const Center(

@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Screens/scanner_login_screen.dart';
+import 'package:scanner_linkup_app/Screens/show_detail1.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -108,6 +109,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 horizontalTitleGap: 0,
               ),
               ListTile(
+                onTap: () {
+                  Get.to(ShowDetailScreen());
+                },
                 visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),

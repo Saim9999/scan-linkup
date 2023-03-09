@@ -21,7 +21,7 @@ class NavigationScreenState extends State<NavigationScreen>
     const QRScreen(),
     const SearchEvents(),
     const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const AllEvents(),
+     AllEvents(),
     const Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
   ];
 
