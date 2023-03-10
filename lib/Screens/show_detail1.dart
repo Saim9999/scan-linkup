@@ -13,7 +13,8 @@ import '../NavBar Screens/all_events_screen.dart';
 import 'drawer_screen.dart';
 
 class ShowDetailScreen extends StatefulWidget {
-  const ShowDetailScreen({super.key});
+  String? pass;
+  ShowDetailScreen({super.key, this.pass});
 
   @override
   State<ShowDetailScreen> createState() => _ShowDetailScreenState();
@@ -28,17 +29,17 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
   SelectedAttendeeModel? obj;
   User? user = FirebaseAuth.instance.currentUser;
 
-  // TextEditingController passController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    String? enteredPassword = widget.pass;
+    print(widget.pass);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
         backgroundColor: const Color.fromARGB(255, 56, 171, 216),
         elevation: 0.0,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 20),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 20),
           child: Text(
             "All Events",
             style: TextStyle(
@@ -49,15 +50,19 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
       drawer: const Drawer(
         child: DrawerScreen(),
       ),
-      body: Column(
+      body: ListView(
         children: [
           const Padding(
-              padding: EdgeInsets.only(left:15.0,right: 15,top: 15,bottom: 10),
-              child: Text(
-                "Here are the Event-ID's .Tap any of them which you want to attend.",
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 17),
-              ),
+            padding:
+                EdgeInsets.only(left: 15.0, right: 15, top: 15, bottom: 10),
+            child: Text(
+              "Here are the events. Enter the password same as login password & see details.",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17),
             ),
+          ),
           SizedBox(
             height: 20.h,
           ),
@@ -82,7 +87,7 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                     );
                   } else {
                     return ListView.builder(
-                      physics: ScrollPhysics(),
+                      physics: const ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
@@ -91,24 +96,50 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                                 doc: snapshot.data!.docs[index]);
                         return Column(
                           children: [
-                            // TextField(
-                              
-                            // ),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromARGB(255, 56, 171, 216),
+                              Row(
+                              children: [
+                                Expanded(
+                                  flex:5,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 30,right: 30),
+                                    child: TextField(
+                                      textInputAction:TextInputAction.done,
+                                      obscureText: true,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Enter event password',
+                                      ),
+                                      onChanged: (value) {
+                                        enteredPassword = value;
+                                      },
+                                    ),
+                                  ),
                                 ),
-                                onPressed: () {
-                                  print(obj.event_id);
-                                  Get.to(AllEvents(
-                                    event_id: obj.event_id,
-                                  ));
-                                },
-                                child: Container(   
-                                  height: 17,
-                                  width: 80,
-                                  child: Text(obj.event_id))),
+                                Expanded(
+                                  flex:2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                          const Color.fromARGB(255, 56, 171, 216),
+                                        ),
+                                        onPressed: () {
+                                          if (enteredPassword == widget.pass) {
+                                            print(obj.event_id);
+                                            Get.to(AllEvents(
+                                              event_id: obj.event_id,
+                                            ));
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text('Incorrect password'),elevation: 20),
+                                            );
+                                          }
+                                        },
+                                        child: const Text("See Event")),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         );
                       },

@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/profile_screen.dart';
 import '../Screens/qr_scan_screen.dart';
 import '../Screens/show_detail1.dart';
-import 'all_events_screen.dart';
 import 'home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+  String? pass;
+   NavigationScreen({super.key,this.pass});
 
   @override
   State<NavigationScreen> createState() => NavigationScreenState();
@@ -17,25 +17,33 @@ class NavigationScreenState extends State<NavigationScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
 
-  final List<Widget>
+  List<Widget>
   mainScreens = [
     const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const QRScreen(),
     const SearchEvents(),
     const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const ShowDetailScreen(),
-    //  AllEvents(),
+    ShowDetailScreen(),
    UserProfileData(),
   ];
 
   @override
   void initState() {
     super.initState();
+    mainScreens = [
+      const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+      const QRScreen(),
+      const SearchEvents(),
+      const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+      ShowDetailScreen(pass: widget.pass),
+      UserProfileData(),
+    ];
     tabController = TabController(initialIndex: 0, length: 6, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.pass);
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
         body: SafeArea(

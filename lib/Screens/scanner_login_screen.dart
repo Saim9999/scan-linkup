@@ -156,7 +156,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                     _obscureText
                                                         ? Icons.visibility_off
                                                         : Icons.visibility,
-                                                        color: Color.fromARGB(
+                                                        color: const Color.fromARGB(
                                                       255, 56, 170, 215),
                                                   ),
                                                   onPressed: () {
@@ -202,6 +202,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                             if (c.globalKey.currentState!
                                                 .validate()) {
                                               {
+                                                print("objectms object${c.passController.text}");
                                                 showDialog(
                                                   context: context,
                                                   builder:
@@ -221,7 +222,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                     .unfocus();
                                                 if (status) {
                                                   Get.offAll(
-                                                      const NavigationScreen());
+                                                       NavigationScreen(pass:c.passController.text ,));
                                                 } else {
                                                   Navigator.of(context,
                                                           rootNavigator: true)
