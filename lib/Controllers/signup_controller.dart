@@ -17,12 +17,12 @@ class SignUpController extends GetxController
   TextEditingController addressscanController = TextEditingController();
   TextEditingController telefonescanController = TextEditingController();
   TextEditingController emailscanController = TextEditingController();
-  TextEditingController websiteController = TextEditingController();
+  // TextEditingController websiteController = TextEditingController();
   TextEditingController roleController = TextEditingController();
   TextEditingController passController = TextEditingController();
   /////////////////////////////////////
-  Rx<String>radiobutton = ''.obs;
-  Location location = Location.Yes;
+  // Rx<String>radiobutton = ''.obs;
+  // Location location = Location.Yes;
   ///////////////////////////////////
   Future sendData(
       String firstName,
@@ -31,8 +31,8 @@ class SignUpController extends GetxController
       String telephone,
       String email,
       String password,
-      String website,
-      String radio,
+      // String website,
+      // String radio,
       String role,
       ) async {
     try {
@@ -48,8 +48,8 @@ class SignUpController extends GetxController
         "address": address,
         "telephone": telephone,
         "email": email,
-        "website": website,
-        "radio": radiobutton.value,
+        // "website": website,
+        // "radio": radiobutton.value,
         "role": role,
         };
         signUser.add(profileData);

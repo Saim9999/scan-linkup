@@ -25,6 +25,10 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       );
     },
   );
+
+  // GlobalKey<FormState> globalKey = GlobalKey();
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -32,13 +36,14 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       builder: (context, child) => Scaffold(
         body: SafeArea(
             child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/Link Up Scanner  Login 1.png'), fit: BoxFit.fill),
-            ),
-            child: GetBuilder<LoginScreenController>(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/Link Up Scanner  Login 1.png'),
+                fit: BoxFit.fill),
+          ),
+          child: GetBuilder<LoginScreenController>(
               init: LoginScreenController(),
               builder: (logic) {
                 return GetBuilder<LoginScreenController>(
@@ -132,20 +137,36 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                             padding: const EdgeInsets.only(
                                                 right: 15),
                                             child: TextFormField(
+                                              obscureText: _obscureText,
                                               validator: c.val,
                                               controller: c.passController,
                                               keyboardType:
                                                   TextInputType.visiblePassword,
                                               textInputAction:
                                                   TextInputAction.done,
-                                              obscureText: true,
                                               decoration: InputDecoration(
-                                                  contentPadding:
-                                                      const EdgeInsets.only(
-                                                          left: 15),
-                                                  hintText: "***************",
-                                                  hintStyle: TextStyle(
-                                                      fontSize: 10.sp)),
+                                                // contentPadding:
+                                                //     const EdgeInsets.only(
+                                                //         left: 15),
+                                                hintText: "***************",
+                                                hintStyle:
+                                                    TextStyle(fontSize: 10.sp),
+                                                suffixIcon: IconButton(
+                                                  icon: Icon(
+                                                    _obscureText
+                                                        ? Icons.visibility_off
+                                                        : Icons.visibility,
+                                                        color: Color.fromARGB(
+                                                      255, 56, 170, 215),
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _obscureText =
+                                                          !_obscureText;
+                                                    });
+                                                  },
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           TextButton(
@@ -183,8 +204,9 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                               {
                                                 showDialog(
                                                   context: context,
-                                                  builder: (BuildContext context) {
-                                                    return  Center(
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return Center(
                                                       child: spinkit,
                                                     );
                                                   },
@@ -195,18 +217,22 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                         c.emailController.text,
                                                     password:
                                                         c.passController.text);
-                                                FocusScope.of(context).unfocus();
+                                                FocusScope.of(context)
+                                                    .unfocus();
                                                 if (status) {
-                                                  Get.offAll(const NavigationScreen());
+                                                  Get.offAll(
+                                                      const NavigationScreen());
                                                 } else {
-                                                  Navigator.of(context, rootNavigator: true).pop();
+                                                  Navigator.of(context,
+                                                          rootNavigator: true)
+                                                      .pop();
                                                   Get.defaultDialog(
                                                     title: "Error",
                                                     middleText:
-                                                    "Wrong Email or Password Provided.",
+                                                        "Wrong Email or Password Provided.",
                                                     backgroundColor:
-                                                    const Color.fromARGB(
-                                                        255, 56, 170, 215),
+                                                        const Color.fromARGB(
+                                                            255, 56, 170, 215),
                                                   );
                                                 }
                                               }

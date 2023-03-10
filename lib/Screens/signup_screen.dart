@@ -19,21 +19,23 @@ class LinkupSignUpScreen extends StatefulWidget {
 
 class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
   ///////////////////////////////////////////////
-  late int selectedRadioTile;
+  // late int selectedRadioTile;
   CollectionReference signUser =
-      FirebaseFirestore.instance.collection('signUsers');
+      FirebaseFirestore.instance.collection('scansignUsers');
   /////////////////////////////////////////////
   TextEditingController firstnameController = TextEditingController();
   TextEditingController lastnameController = TextEditingController();
   TextEditingController addressscanController = TextEditingController();
   TextEditingController telefonescanController = TextEditingController();
   TextEditingController emailscanController = TextEditingController();
-  TextEditingController websiteController = TextEditingController();
+  // TextEditingController websiteController = TextEditingController();
   TextEditingController roleController = TextEditingController();
   TextEditingController passController = TextEditingController();
   /////////////////////////////////////
-  Rx<String> radiobutton = ''.obs;
-  Location location = Location.Yes;
+  ///
+  // Rx<String> radiobutton = ''.obs;
+  // Location location = Location.Yes;
+  
   ///////////////////////////////////
   Future sendData(
     String firstName,
@@ -42,8 +44,8 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
     String telephone,
     String email,
     String password,
-    String website,
-    String radio,
+    // String website,
+    // String radio,
     String role,
   ) async {
     UserCredential? credential;
@@ -68,10 +70,10 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
         "address": address,
         "telephone": telephone,
         "email": email,
-        "website": website,
-        "radio": radiobutton.value,
+        // "website": website,
+        // "radio": radiobutton.value,
         "role": role,
-        "created _at": DateTime.now(),
+        "created_at": DateTime.now(),
       };
       signUser.add(profileData);
     }
@@ -265,68 +267,68 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(left: 15),
-                                hintText: "password",
+                                hintText: "Password",
                                 hintStyle: TextStyle(fontSize: 10.sp),
                               ),
                             ),
                           ),
+                          // SizedBox(
+                          //   height: 15.h,
+                          // ),
+                          // largeText('Website'),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(right: 15),
+                          //   child: TextFormField(
+                          //     validator: val,
+                          //     controller: websiteController,
+                          //     textInputAction: TextInputAction.next,
+                          //     decoration: InputDecoration(
+                          //         contentPadding:
+                          //             const EdgeInsets.only(left: 15),
+                          //         hintText: "Enter",
+                          //         hintStyle: TextStyle(fontSize: 10.sp)),
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 15.h,
                           ),
-                          largeText('Website'),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: TextFormField(
-                              validator: val,
-                              controller: websiteController,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 15),
-                                  hintText: "Enter",
-                                  hintStyle: TextStyle(fontSize: 10.sp)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          largeText('www'),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Radio(
-                                        value: Location.Yes,
-                                        groupValue: location,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            location = value!;
-                                            radiobutton.value = "Organization";
-                                          });
-                                        }),
-                                    const Text('Organization')
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    Radio(
-                                        value: Location.No,
-                                        groupValue: location,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            location = value!;
-                                            radiobutton.value = "Individual";
-                                          });
-                                        }),
-                                    const Text('Individual')
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                          // largeText('www'),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //       child: Row(
+                          //         children: [
+                          //           Radio(
+                          //               value: Location.Yes,
+                          //               groupValue: location,
+                          //               onChanged: (value) {
+                          //                 setState(() {
+                          //                   location = value!;
+                          //                   radiobutton.value = "Organization";
+                          //                 });
+                          //               }),
+                          //           const Text('Organization')
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     Expanded(
+                          //       child: Row(
+                          //         children: [
+                          //           Radio(
+                          //               value: Location.No,
+                          //               groupValue: location,
+                          //               onChanged: (value) {
+                          //                 setState(() {
+                          //                   location = value!;
+                          //                   radiobutton.value = "Individual";
+                          //                 });
+                          //               }),
+                          //           const Text('Individual')
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           largeText('Role'),
                           Padding(
                             padding: const EdgeInsets.only(right: 15),
@@ -422,8 +424,8 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
                             telefonescanController.text,
                             emailscanController.text,
                             passController.text,
-                            websiteController.text,
-                            radiobutton.value,
+                            // websiteController.text,
+                            // radiobutton.value,
                             roleController.text,
                           );
                           Fluttertoast.showToast(
@@ -474,4 +476,4 @@ class _LinkupSignUpScreenState extends State<LinkupSignUpScreen> {
   }
 }
 
-enum Location { Yes, No }
+// enum Location { Yes, No }

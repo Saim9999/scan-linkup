@@ -8,15 +8,18 @@ import '../Screens/drawer_screen.dart';
 import 'event_details-screen.dart';
 
 class AllEvents extends StatefulWidget {
-  const AllEvents({super.key});
+  String? event_id;
+  AllEvents({super.key, this.event_id});
 
   @override
   State<AllEvents> createState() => _AllEventsState();
 }
 
 class _AllEventsState extends State<AllEvents> {
+  ///////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
   CollectionReference eventRef =
-  FirebaseFirestore.instance.collection("events");
+      FirebaseFirestore.instance.collection("events");
   String? countryValue = "Select a Specific Country";
   User? user = FirebaseAuth.instance.currentUser;
   String? id;
@@ -33,7 +36,7 @@ class _AllEventsState extends State<AllEvents> {
           title: Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Text(
-              "All Events",
+              "Event Details",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.sp,
@@ -41,9 +44,9 @@ class _AllEventsState extends State<AllEvents> {
             ),
           ),
         ),
-        drawer: const Drawer(
-          child: DrawerScreen(),
-        ),
+        // drawer: const Drawer(
+        //   child: DrawerScreen(),
+        // ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -51,9 +54,12 @@ class _AllEventsState extends State<AllEvents> {
               height: 10.h,
             ),
             FutureBuilder(
-                future: eventRef.where('id', isEqualTo: id).get(),
+                future: eventRef
+                    .where('event_id', isEqualTo: widget.event_id)
+                    .get(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
+                    print(widget.event_id);
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError || snapshot.data == null) {
                     return const Center(
@@ -119,7 +125,7 @@ class _AllEventsState extends State<AllEvents> {
                                       obj.description,
                                       style: const TextStyle(
                                         color:
-                                        Color.fromARGB(255, 110, 110, 110),
+                                            Color.fromARGB(255, 110, 110, 110),
                                         fontSize: 10,
                                       ),
                                       textAlign: TextAlign.justify,
