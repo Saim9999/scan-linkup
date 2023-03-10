@@ -4,11 +4,13 @@ class SelectedAttendeeModel
 {
   late final String event_id;
   late final String uid;
+  late final String address;
 
 
   SelectedAttendeeModel({
   required this. event_id,
   required this. uid,
+  required this.address,
 });
   SelectedAttendeeModel.fromDocumentSnapshot({required DocumentSnapshot doc})
   {
@@ -16,5 +18,6 @@ class SelectedAttendeeModel
     //id=doc.id;
     event_id=data["event_id"]??"";
     uid=data["uid"]??"";
+    address=data["address"]??"";
   }
 }

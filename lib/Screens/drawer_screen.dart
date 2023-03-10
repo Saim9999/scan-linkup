@@ -109,9 +109,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 horizontalTitleGap: 0,
               ),
               ListTile(
-                onTap: () {
-                  Get.to(ShowDetailScreen());
-                },
+                // onTap: () {
+                //   Get.to(ShowDetailScreen());
+                // },
                 visualDensity: const VisualDensity(horizontal: 4, vertical: -4),
                 leading: Padding(
                   padding: const EdgeInsets.only(left: 40),
