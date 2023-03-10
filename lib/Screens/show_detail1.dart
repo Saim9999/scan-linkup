@@ -96,14 +96,21 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                                 doc: snapshot.data!.docs[index]);
                         return Column(
                           children: [
-                              Row(
+                            Row(
                               children: [
                                 Expanded(
-                                  flex:5,
+                                  flex: 5,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 30,right: 30),
-                                    child: TextField(
-                                      textInputAction:TextInputAction.done,
+                                    padding: const EdgeInsets.only(
+                                        left: 30, right: 30),
+                                    child: TextFormField(
+                                      // validator: (value) {
+                                      //   if (value == null || value.isEmpty) {
+                                      //     return "Field Can't be Empty!";
+                                      //   }
+                                      //   return null;
+                                      // },
+                                      textInputAction: TextInputAction.done,
                                       obscureText: true,
                                       decoration: const InputDecoration(
                                         hintText: 'Enter event password',
@@ -115,23 +122,40 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                                   ),
                                 ),
                                 Expanded(
-                                  flex:2,
+                                  flex: 2,
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 8.0),
                                     child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                          const Color.fromARGB(255, 56, 171, 216),
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 56, 171, 216),
                                         ),
                                         onPressed: () {
-                                          if (enteredPassword == widget.pass) {
+                                          if(!enteredPassword!.isEmpty)
+                                            {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                  const SnackBar(
+                                                    content:
+                                                    Text('Incorrect password'),
+                                                    elevation: 20,
+                                                    duration: Duration(seconds: 3),
+                                                  ),);
+                                            }
+                                          else if (enteredPassword == widget.pass) {
                                             print(obj.event_id);
                                             Get.to(AllEvents(
                                               event_id: obj.event_id,
                                             ));
                                           } else {
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                              const SnackBar(content: Text('Incorrect password'),elevation: 20),
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                content:
+                                                    Text('Incorrect password'),
+                                                elevation: 20,
+                                                duration: Duration(seconds: 3),
+                                              ),
                                             );
                                           }
                                         },
