@@ -33,8 +33,7 @@ class _ScanEventDetailState extends State<ScanEventDetail>
 
   @override
   Widget build(BuildContext context) {
-    int myInt = int.parse(widget.qr!);
-
+    int intQr = int.parse(widget.qr!);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40.h,
@@ -58,7 +57,7 @@ class _ScanEventDetailState extends State<ScanEventDetail>
                   image: AssetImage('assets/images/Group 10 (1).png'),
                   fit: BoxFit.fill)),
           child: FutureBuilder(
-              future: ref3.where('qrcode', isEqualTo: myInt).get(),
+              future: ref3.where('qrcode', isEqualTo: intQr).get(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
