@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Models/qr_model.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
@@ -16,10 +15,12 @@ class ScanEventDetail extends StatefulWidget {
 
 class _ScanEventDetailState extends State<ScanEventDetail>
 {
-
+  ////////////////////////////////////////
   CollectionReference ref3 = FirebaseFirestore.instance.collection('tickets');
   CollectionReference ref = FirebaseFirestore.instance.collection('attendence');
+  ///////////////////////////////////////
   QRModel? obj;
+  //////////////////////////////////////
   Future sendDataToAttendee(
     String title,
     String event_id,
@@ -55,11 +56,13 @@ class _ScanEventDetailState extends State<ScanEventDetail>
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/Group 10 (1).png'),
-                  fit: BoxFit.fill)),
+                  fit: BoxFit.fill),
+          ),
           child: FutureBuilder(
               future: ref3.where('qrcode', isEqualTo: intQr).get(),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
+                if (snapshot.connectionState == ConnectionState.waiting)
+                {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError || snapshot.data == null) {
                   return const Center(
@@ -77,7 +80,6 @@ class _ScanEventDetailState extends State<ScanEventDetail>
                       ),
                     );
                   } else {
-                    print("this is detail qr ${widget.qr}");
                     return ListView.builder(
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (ctx, index) {
