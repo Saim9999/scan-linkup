@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:scanner_linkup_app/Models/qr_model.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
@@ -13,10 +14,11 @@ class ScanEventDetail extends StatefulWidget {
   State<ScanEventDetail> createState() => _ScanEventDetailState();
 }
 
-class _ScanEventDetailState extends State<ScanEventDetail> {
+class _ScanEventDetailState extends State<ScanEventDetail>
+{
+
   CollectionReference ref3 = FirebaseFirestore.instance.collection('tickets');
   CollectionReference ref = FirebaseFirestore.instance.collection('attendence');
-
   QRModel? obj;
   Future sendDataToAttendee(
     String title,
@@ -31,6 +33,8 @@ class _ScanEventDetailState extends State<ScanEventDetail> {
 
   @override
   Widget build(BuildContext context) {
+    int myInt = int.parse(widget.qr!);
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40.h,
@@ -54,7 +58,7 @@ class _ScanEventDetailState extends State<ScanEventDetail> {
                   image: AssetImage('assets/images/Group 10 (1).png'),
                   fit: BoxFit.fill)),
           child: FutureBuilder(
-              future: ref3.where('qrcode', isEqualTo: widget.qr).get(),
+              future: ref3.where('qrcode', isEqualTo: myInt).get(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -90,122 +94,117 @@ class _ScanEventDetailState extends State<ScanEventDetail> {
                                 ),
                                 TicketWidget(
                                   width: 350,
-                                  height: 600,
+                                  height: 520,
                                   isCornerRounded: true,
                                   padding: const EdgeInsets.all(20),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      Row(
                                         children: [
                                           ticketDetailsWidget(
                                               'Title', obj.title, '', ''),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 52.0),
-                                            child: ticketDetailsWidget(
-                                                'Qr Code', obj.qrcode, '', ''),
+                                          const SizedBox(
+                                            width: 100,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 52.0),
-                                            child: ticketDetailsWidget(
-                                                'Available From',
-                                                obj.available_from,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'Available To',
-                                                obj.available_to,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'Early Bird Economy Price',
-                                                obj.early_bird_economy_price,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'No of Early Bird Economy',
-                                                obj.no_of_early_bird_economy,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'Price Economy',
-                                                "\$${obj.price_economy}",
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'No of Tickets Available Economy',
-                                                obj.no_of_tickets_available_economy,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'Early Bird Vip Price',
-                                                obj.early_bird_vip_price,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'No of Early Bird Vip',
-                                                obj.no_of_early_bird_vip,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'No of Tickets Available Vip',
-                                                obj.no_of_tickets_available_vip,
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget(
-                                                'Price Vip',
-                                                "\$${obj.price_vip}",
-                                                '',
-                                                ''),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 6.0, right: 53.0),
-                                            child: ticketDetailsWidget('Free',
-                                                obj.is_free.toString(), '', ''),
-                                          ),
+                                          ticketDetailsWidget(
+                                              'Qr Code', obj.qrcode.toString(), '', ''),
                                         ],
+                                      ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 52.0),
+                                        child: ticketDetailsWidget(
+                                            'Available From',
+                                            obj.available_from,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'Available To',
+                                            obj.available_to,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'Early Bird Economy Price',
+                                            obj.early_bird_economy_price,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'No of Early Bird Economy',
+                                            obj.no_of_early_bird_economy,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'Price Economy',
+                                            "\$${obj.price_economy}",
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'No of Tickets Available Economy',
+                                            obj.no_of_tickets_available_economy,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'Early Bird Vip Price',
+                                            obj.early_bird_vip_price,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'No of Early Bird Vip',
+                                            obj.no_of_early_bird_vip,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget(
+                                            'No of Tickets Available Vip',
+                                            obj.no_of_tickets_available_vip,
+                                            '',
+                                            ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget('Price Vip',
+                                            "\$${obj.price_vip}", '', ''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 6.0, right: 53.0),
+                                        child: ticketDetailsWidget('Free',
+                                            obj.is_free.toString(), '', ''),
                                       ),
                                     ],
                                   ),
@@ -256,37 +255,18 @@ Widget ticketDetailsWidget(String firstTitle, String firstDesc,
           children: <Widget>[
             Text(
               firstTitle,
-              style: const TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4.0),
               child: Text(
                 firstDesc,
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black, fontSize: 12),
               ),
             )
           ],
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(right: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              secondTitle,
-              style: const TextStyle(color: Colors.grey),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0),
-              child: Text(
-                secondDesc,
-                style: const TextStyle(color: Colors.black),
-              ),
-            )
-          ],
-        ),
-      )
     ],
   );
 }

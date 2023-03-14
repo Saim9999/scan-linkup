@@ -8,8 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../Controllers/login_controller.dart';
 import '../Models/selected_attendee.dart';
 import '../NavBar Screens/all_events_screen.dart';
+import '../NavBar Screens/mian_navbar_screen.dart';
 import 'drawer_screen.dart';
 
 class ShowDetailScreen extends StatefulWidget {
@@ -29,17 +31,17 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
   SelectedAttendeeModel? obj;
   User? user = FirebaseAuth.instance.currentUser;
 
+  // TextEditingController passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    String? enteredPassword = widget.pass;
-    print(widget.pass);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
         backgroundColor: const Color.fromARGB(255, 56, 171, 216),
         elevation: 0.0,
-        title: const Padding(
-          padding: EdgeInsets.only(left: 20),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 20),
           child: Text(
             "All Events",
             style: TextStyle(
@@ -50,13 +52,13 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
       drawer: const Drawer(
         child: DrawerScreen(),
       ),
-      body: ListView(
+      body: Column(
         children: [
           const Padding(
             padding:
                 EdgeInsets.only(left: 15.0, right: 15, top: 15, bottom: 10),
             child: Text(
-              "Here are the events. Enter the password same as login password & see details.",
+              "Here are the Event-ID's .Tap any of them which you want to attend.",
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -87,7 +89,7 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                     );
                   } else {
                     return ListView.builder(
-                      physics: const ScrollPhysics(),
+                      physics: ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
@@ -96,81 +98,27 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                                 doc: snapshot.data!.docs[index]);
                         return Column(
                           children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 5,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 30, right: 30),
-                                    child: TextFormField(
-                                      // validator: (value) {
-                                      //   if (value == null || value.isEmpty) {
-                                      //     return "Field Can't be Empty!";
-                                      //   }
-                                      //   return null;
-                                      // },
-                                      textInputAction: TextInputAction.done,
-                                      obscureText: true,
-                                      decoration: const InputDecoration(
-                                        hintText: 'Enter event password',
-                                      ),
-                                      onChanged: (value) {
-                                        enteredPassword = value;
-                                      },
-                                    ),
-                                  ),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 56, 171, 216),
                                 ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color.fromARGB(
-                                              255, 56, 171, 216),
-                                        ),
-                                        onPressed: () {
-                                          if(!enteredPassword!.isEmpty)
-                                            {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                  const SnackBar(
-                                                    content:
-                                                    Text('Incorrect password'),
-                                                    elevation: 20,
-                                                    duration: Duration(seconds: 3),
-                                                  ),);
-                                            }
-                                          else if (enteredPassword == widget.pass) {
-                                            print(obj.event_id);
-                                            Get.to(AllEvents(
-                                              event_id: obj.event_id,
-                                            ));
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              const SnackBar(
-                                                content:
-                                                    Text('Incorrect password'),
-                                                elevation: 20,
-                                                duration: Duration(seconds: 3),
-                                              ),
-                                            );
-                                          }
-                                        },
-                                        child: const Text("See Event")),
-                                  ),
-                                ),
-                              ],
-                            ),
+                                onPressed: () async {
+                                  Get.to(AllEvents(
+                                    event_id: obj.event_id,
+                                  ));
+                                },
+                                child: Container(
+                                    height: 17,
+                                    width: 80,
+                                    child: Text(obj.event_id))),
                           ],
                         );
                       },
                     );
                   }
                 }
-              }),
+              })
         ],
       ),
     );

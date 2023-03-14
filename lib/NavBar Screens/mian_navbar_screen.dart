@@ -6,8 +6,7 @@ import '../Screens/show_detail1.dart';
 import 'home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
-  String? pass;
-   NavigationScreen({super.key,this.pass});
+  const NavigationScreen({super.key});
 
   @override
   State<NavigationScreen> createState() => NavigationScreenState();
@@ -17,33 +16,24 @@ class NavigationScreenState extends State<NavigationScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
 
-  List<Widget>
+  final List<Widget>
   mainScreens = [
     const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     const QRScreen(),
     const SearchEvents(),
     const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     ShowDetailScreen(),
-   UserProfileData(),
+    UserProfileData(),
   ];
 
   @override
   void initState() {
     super.initState();
-    mainScreens = [
-      const Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-      const QRScreen(),
-      const SearchEvents(),
-      const Text('Cash out Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-      ShowDetailScreen(pass: widget.pass),
-      UserProfileData(),
-    ];
     tabController = TabController(initialIndex: 0, length: 6, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.pass);
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
         body: SafeArea(

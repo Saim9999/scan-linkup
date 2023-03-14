@@ -11,6 +11,8 @@ class LoginScreenController extends GetxController {
   TextEditingController passController = TextEditingController();
 
   static CollectionReference userReference = FirebaseFirestore.instance.collection("sign user");
+
+  String? get text => null;
   // ignore: unused_element
   Future<bool> loginUser({
     required String email,

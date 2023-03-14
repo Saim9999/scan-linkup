@@ -9,7 +9,7 @@ import 'event_details-screen.dart';
 
 class AllEvents extends StatefulWidget {
   String? event_id;
-  AllEvents({super.key, this.event_id});
+  AllEvents({super.key, this.event_id,});
 
   @override
   State<AllEvents> createState() => _AllEventsState();

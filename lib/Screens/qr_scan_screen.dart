@@ -20,7 +20,6 @@ class _QRScreenState extends State<QRScreen> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
-       
         body: Container(
           height: double.infinity,
           width: double.infinity,
@@ -70,10 +69,9 @@ class _QRScreenState extends State<QRScreen> {
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.QR);
-
       if (!mounted) return;
-
-      setState(() {
+      setState(()
+      {
         getResult = qrCode;
       });
       print("QRCode_Result:--");
