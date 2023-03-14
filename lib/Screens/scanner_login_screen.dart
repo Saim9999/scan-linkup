@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -26,7 +28,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
     },
   );
 
-  // GlobalKey<FormState> globalKey = GlobalKey();
+
   bool _obscureText = true;
 
   @override
@@ -68,7 +70,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(3)),
-                              height: 360.h,
+                              height: 330.h,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -156,8 +158,8 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                     _obscureText
                                                         ? Icons.visibility_off
                                                         : Icons.visibility,
-                                                        color: Color.fromARGB(
-                                                      255, 56, 170, 215),
+                                                    color: Color.fromARGB(
+                                                        255, 56, 170, 215),
                                                   ),
                                                   onPressed: () {
                                                     setState(() {
@@ -202,6 +204,9 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                             if (c.globalKey.currentState!
                                                 .validate()) {
                                               {
+                                                print('mmmknmknknkknnk');
+                                                print("jsbdshsosocosbcosvobsovjsoosv${c.passController.text}");
+
                                                 showDialog(
                                                   context: context,
                                                   builder:
@@ -220,6 +225,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                                 FocusScope.of(context)
                                                     .unfocus();
                                                 if (status) {
+                                                  
                                                   Get.offAll(
                                                       const NavigationScreen());
                                                 } else {
@@ -246,33 +252,33 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                                           ))),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 25),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "Don't have an acoount?",
-                                          style: TextStyle(
-                                              color: Colors.grey.shade500),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(builder: (_) {
-                                              return const LinkupSignUpScreen();
-                                            }));
-                                          },
-                                          child: const Text(
-                                            'Sign Up',
-                                            style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 56, 170, 215),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(left: 25),
+                                  //   child: Row(
+                                  //     children: [
+                                  //       Text(
+                                  //         "Don't have an acoount?",
+                                  //         style: TextStyle(
+                                  //             color: Colors.grey.shade500),
+                                  //       ),
+                                  //       TextButton(
+                                  //         onPressed: () {
+                                  //           Navigator.push(context,
+                                  //               MaterialPageRoute(builder: (_) {
+                                  //             return const LinkupSignUpScreen();
+                                  //           }));
+                                  //         },
+                                  //         child: const Text(
+                                  //           'Sign Up',
+                                  //           style: TextStyle(
+                                  //             color: Color.fromARGB(
+                                  //                 255, 56, 170, 215),
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

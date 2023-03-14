@@ -8,12 +8,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../Controllers/login_controller.dart';
 import '../Models/selected_attendee.dart';
 import '../NavBar Screens/all_events_screen.dart';
+import '../NavBar Screens/mian_navbar_screen.dart';
 import 'drawer_screen.dart';
 
 class ShowDetailScreen extends StatefulWidget {
-  const ShowDetailScreen({super.key});
+  String? pass;
+  ShowDetailScreen({super.key, this.pass});
 
   @override
   State<ShowDetailScreen> createState() => _ShowDetailScreenState();
@@ -52,12 +55,16 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
       body: Column(
         children: [
           const Padding(
-              padding: EdgeInsets.only(left:15.0,right: 15,top: 15,bottom: 10),
-              child: Text(
-                "Here are the Event-ID's .Tap any of them which you want to attend.",
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 17),
-              ),
+            padding:
+                EdgeInsets.only(left: 15.0, right: 15, top: 15, bottom: 10),
+            child: Text(
+              "Here are the Event-ID's .Tap any of them which you want to attend.",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17),
             ),
+          ),
           SizedBox(
             height: 20.h,
           ),
@@ -91,31 +98,27 @@ class _ShowDetailScreenState extends State<ShowDetailScreen> {
                                 doc: snapshot.data!.docs[index]);
                         return Column(
                           children: [
-                            // TextField(
-                              
-                            // ),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
                                       Color.fromARGB(255, 56, 171, 216),
                                 ),
-                                onPressed: () {
-                                  print(obj.event_id);
+                                onPressed: () async {
                                   Get.to(AllEvents(
                                     event_id: obj.event_id,
                                   ));
                                 },
-                                child: Container(   
-                                  height: 17,
-                                  width: 80,
-                                  child: Text(obj.event_id))),
+                                child: Container(
+                                    height: 17,
+                                    width: 80,
+                                    child: Text(obj.event_id))),
                           ],
                         );
                       },
                     );
                   }
                 }
-              }),
+              })
         ],
       ),
     );

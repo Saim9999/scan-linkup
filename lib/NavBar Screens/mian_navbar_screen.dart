@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scanner_linkup_app/NavBar%20Screens/profile_screen.dart';
+import '../Controllers/login_controller.dart';
 import '../Screens/qr_scan_screen.dart';
 import '../Screens/show_detail1.dart';
 import 'all_events_screen.dart';
